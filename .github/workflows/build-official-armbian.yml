@@ -1,0 +1,16 @@
+name: Build Armbian Image
+on:
+  workflow_dispatch: # 手动触发
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # 使用何种编译服务器
+    steps:
+      - name: Build Armbian
+        uses: armbian/build@main
+        with:
+          armbian_token: ${{ secrets.GITHUB_TOKEN }}
+          armbian_board: rockpi-4b # 你的开发板型号
+          armbian_release: trixie # 系统版本：bookworm/jammy/trixie
+          armbian_target: build # build=完整镜像，kernel=仅内核
+          armbian_ui: server # server/desktop/minimal
